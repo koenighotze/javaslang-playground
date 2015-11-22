@@ -4,6 +4,7 @@ import javaslang.control.*;
 import org.junit.*;
 
 import java.io.*;
+import java.util.stream.*;
 
 import static java.lang.String.*;
 import static java.nio.file.Paths.*;
@@ -34,11 +35,24 @@ public class ExceptionHandlingTest {
 
     @Test
     public void catch_exceptions_in_a_functional_way() {
+        // old
+        String oldResult;
+        try {
+            oldResult = new FileReader().readFile(get("/notthere"))
+                    .stream()
+                    .collect(Collectors.joining(", "));
+        } catch (IOException e) {
+            oldResult = "File not found! Check param!";
+        }
+        assertThat(oldResult).isEqualTo("File not found! Check param!");
+
+        // new
         String result = Try.of(() -> new FileReader().readFile(get("/notthere")))
                 .map(liste -> join(", ", liste))
                 .orElseGet(t -> "File not found! Check param!");
 
         assertThat(result).isEqualTo("File not found! Check param!");
+        System.out.println(result);
     }
 
 }
