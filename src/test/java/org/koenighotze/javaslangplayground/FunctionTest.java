@@ -4,10 +4,12 @@ import javaslang.*;
 import javaslang.control.*;
 import org.junit.*;
 
+import java.util.*;
 import java.util.function.*;
 
 import static java.lang.Integer.*;
 import static java.time.LocalDate.*;
+import static java.util.Optional.*;
 import static javaslang.Function1.*;
 import static org.fest.assertions.Assertions.*;
 
@@ -15,6 +17,16 @@ import static org.fest.assertions.Assertions.*;
  * @author dschmitz
  */
 public class FunctionTest {
+    @Test
+    public void old_way_currying() {
+        BiFunction<Integer, Integer, Integer> f = (i, j) -> i * j;
+
+        Function<Integer, Integer> curried = (i) -> {
+            return f.apply(2, i);
+        };
+
+        assertThat(curried.apply(5)).isEqualTo(10);
+    }
 
     /**
      * Currying as was intended.
@@ -41,7 +53,7 @@ public class FunctionTest {
      * Lift can be used to encapsulate exceptions.
      */
     @Test
-    public void using_lift_to_handle_exceptions() {
+    public void using_lift_to_handle_partials() {
         Function1<Subject, Option<Boolean>> lifted = lift(Subject::isValid);
 
         assertThat(lifted.apply(new Subject(null, null)).isEmpty()).isTrue();
@@ -64,7 +76,17 @@ public class FunctionTest {
 
     @Test
     public void memoization() {
-        Subject subject = new Subject("foo", now());
+        Subject subject = new Subject(" foo", now());
+
+        // old way
+        // 1. lifting w.o. exception handling etc.
+        Function<Subject, Optional<Integer>> lifted = (Subject s) -> {
+            return ofNullable(s.callMeTwiceAndIfWillFail());
+        };
+
+        // memoization is just too much work
+
+        // javaslang
         Function1<Subject, Option<Integer>> memoized = lift(Subject::callMeTwiceAndIfWillFail).memoized();
 
         assertThat(memoized.apply(subject).get()).isEqualTo(MAX_VALUE);

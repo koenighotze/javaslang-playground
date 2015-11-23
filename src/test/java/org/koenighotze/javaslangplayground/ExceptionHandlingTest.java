@@ -29,7 +29,6 @@ public class ExceptionHandlingTest {
         String result = Try.of(() -> new FileReader().readFile(get("/etc/hosts")))
                 .map(liste -> join(", ", liste))
                 .get();
-
         assertThat(result).isNotEmpty();
     }
 
@@ -50,9 +49,7 @@ public class ExceptionHandlingTest {
         String result = Try.of(() -> new FileReader().readFile(get("/notthere")))
                 .map(liste -> join(", ", liste))
                 .orElseGet(t -> "File not found! Check param!");
-
         assertThat(result).isEqualTo("File not found! Check param!");
-        System.out.println(result);
     }
 
 }
