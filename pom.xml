@@ -24,12 +24,22 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.javaslang</groupId>
+            <groupId>io.javaslang</groupId>
             <artifactId>javaslang</artifactId>
-            <version>2.0.0-RC1</version>
+            <version>2.0.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.javaslang</groupId>
+            <artifactId>javaslang-jackson</artifactId>
+            <version>2.0.2</version>
+        </dependency>
 
+        <dependency>
+            <groupId>io.github.robwin</groupId>
+            <artifactId>javaslang-circuitbreaker</artifactId>
+            <version>0.5.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
