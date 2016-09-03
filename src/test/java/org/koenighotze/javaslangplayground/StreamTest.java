@@ -1,14 +1,14 @@
 package org.koenighotze.javaslangplayground;
 
+import javaslang.collection.Stream;
+import org.junit.Test;
+
+import java.util.Set;
+import java.util.stream.IntStream;
+
 import static java.util.stream.Collectors.toSet;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.fest.util.Collections.set;
-
-import java.util.Set;
-
-import org.junit.Test;
-
-import javaslang.collection.Stream;
 
 /**
  * @author David Schmitz
@@ -35,5 +35,22 @@ public class StreamTest {
                   .toJavaSet();
         //@formatter:on
         assertThat(teams).isEqualTo(set("f95", "fck", "fcn"));
+    }
+
+    @Test
+    public void read_multiple_times_from_stream() {
+        Stream<String> sample = Stream.of("a", "B", "c");
+
+        sample.map(String::toUpperCase);
+
+        sample.map(String::toUpperCase);
+    }
+
+    @Test
+    public void java8stream() {
+        IntStream intStream = IntStream.of(1, 2, 3);
+
+        intStream.map(i -> i - 2);
+        intStream.map(i -> i - 2);
     }
 }

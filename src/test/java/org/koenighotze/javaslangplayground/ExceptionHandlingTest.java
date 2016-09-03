@@ -1,20 +1,38 @@
 package org.koenighotze.javaslangplayground;
 
-import static java.lang.String.join;
-import static java.nio.file.Paths.get;
-import static java.util.stream.Collectors.joining;
-import static org.fest.assertions.Assertions.assertThat;
-
-import java.io.IOException;
-
+import javaslang.collection.List;
+import javaslang.control.Try;
+import org.junit.Before;
 import org.junit.Test;
 
-import javaslang.control.Try;
+import java.io.IOException;
+import java.util.stream.Collectors;
+
+import static java.lang.String.join;
+import static java.nio.file.Paths.get;
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.joining;
+import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * @author dschmitz
  */
 public class ExceptionHandlingTest {
+
+    private java.util.List<User> users;
+    private UserRepository repo;
+
+    @Before
+    public void setupUsers() {
+        User validUser = new User();
+        Address address = new Address();
+        address.setStreet("Foolane");
+        validUser.setAddress(address);
+
+        users = asList(validUser, new User());
+        repo = new UserRepository();
+    }
+
     @Test
     public void reading_a_file_returns_all_lines() throws IOException {
         assertThat(new FileReader().readFile(get("/etc/hosts"))).isNotEmpty();
@@ -29,6 +47,31 @@ public class ExceptionHandlingTest {
     public void simple_try_usage() {
         String result = Try.of(() -> new FileReader().readFile(get("/etc/hosts"))).map(liste -> join(", ", liste)).get();
         assertThat(result).isNotEmpty();
+    }
+
+    @Test
+    public void handle_exceptions_in_classic_lamdba() {
+        java.util.List<User> validUsers = users.stream()
+                .filter(user ->
+                {
+                    try {
+                        return user.validateAddress();
+                    } catch (IllegalStateException isex) {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toList());
+        assertThat(validUsers.size()).isEqualTo(1);
+    }
+
+    @Test
+    public void handle_exceptions_using_javaslang() {
+        List<User> validUsers =
+                List.ofAll(users)
+                        .filter(user -> Try.of(user::validateAddress)
+                                .getOrElse(false));
+
+        assertThat(validUsers.size()).isEqualTo(1);
     }
 
     @Test
@@ -57,4 +100,8 @@ public class ExceptionHandlingTest {
         assertThat(result).isEqualTo("File not found! Check param!");
     }
 
+    @Test
+    public void apply_checked_exception_function_to_list_of_users() {
+        // todo
+    }
 }

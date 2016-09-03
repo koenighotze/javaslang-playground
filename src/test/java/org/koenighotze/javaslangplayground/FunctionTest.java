@@ -80,9 +80,7 @@ public class FunctionTest {
 
         // old way
         // 1. lifting w.o. exception handling etc.
-        Function<Subject, Optional<Integer>> lifted = (Subject s) -> {
-            return ofNullable(s.callMeTwiceAndIfWillFail());
-        };
+        Function<Subject, Optional<Integer>> lifted = (Subject s) -> ofNullable(s.callMeTwiceAndIfWillFail());
 
         // memoization is just too much work
 
@@ -92,5 +90,10 @@ public class FunctionTest {
         assertThat(memoized.apply(subject).get()).isEqualTo(MAX_VALUE);
 
         assertThat(memoized.apply(subject).get()).isEqualTo(MAX_VALUE);
+    }
+
+
+    @Test
+    public void return_function_with_checked_exception() {
     }
 }
