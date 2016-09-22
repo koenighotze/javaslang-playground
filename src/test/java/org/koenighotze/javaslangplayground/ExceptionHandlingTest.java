@@ -49,9 +49,14 @@ public class ExceptionHandlingTest {
         assertThat(result).isNotEmpty();
     }
 
+    public static class MyBusinessException extends Exception {
+
+    }
+
     @Test
     public void handle_exceptions_in_classic_lamdba() {
-        java.util.List<User> validUsers = users.stream()
+        java.util.List<User> validUsers =
+                users.stream()
                 .filter(user ->
                 {
                     try {

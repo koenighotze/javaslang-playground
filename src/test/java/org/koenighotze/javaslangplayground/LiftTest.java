@@ -1,8 +1,8 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.Function1;
 import org.junit.Test;
 
+import static javaslang.Function1.lift;
 import static org.fest.assertions.Assertions.assertThat;
 
 /**
@@ -10,7 +10,7 @@ import static org.fest.assertions.Assertions.assertThat;
  */
 public class LiftTest {
 
-    public static String unsafe(String s) {
+    private static String unsafe(String s) {
         if (s.length() > 5) {
             return s.toUpperCase();
         }
@@ -22,12 +22,10 @@ public class LiftTest {
     public void safe_op() {
         //@formatter:off
         String res =
-            Function1
-            .lift(LiftTest::unsafe)
+            lift(LiftTest::unsafe)
             .apply("a")
             .getOrElse("a is too short");
         //@formatter:on
         assertThat(res).isEqualTo("a is too short");
     }
-
 }

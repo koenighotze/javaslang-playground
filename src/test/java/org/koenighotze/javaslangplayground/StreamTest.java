@@ -4,7 +4,6 @@ import javaslang.collection.Stream;
 import org.junit.Test;
 
 import java.util.Set;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.toSet;
 import static org.fest.assertions.Assertions.assertThat;
@@ -42,15 +41,15 @@ public class StreamTest {
         Stream<String> sample = Stream.of("a", "B", "c");
 
         sample.map(String::toUpperCase);
-
         sample.map(String::toUpperCase);
     }
 
-    @Test
+    // cannot read multiple times from a jdk stream
+    @Test(expected = IllegalStateException.class)
     public void java8stream() {
-        IntStream intStream = IntStream.of(1, 2, 3);
+        java.util.stream.Stream<String> sample = java.util.stream.Stream.of("a", "B", "c");
 
-        intStream.map(i -> i - 2);
-        intStream.map(i -> i - 2);
+        sample.map(String::toUpperCase);
+        sample.map(String::toUpperCase);
     }
 }
