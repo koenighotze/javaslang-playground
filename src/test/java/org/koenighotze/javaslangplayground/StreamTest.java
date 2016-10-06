@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.fest.util.Collections.set;
+import static org.assertj.core.api.Assertions.*;
+
 
 /**
  * @author David Schmitz
@@ -22,7 +22,7 @@ public class StreamTest {
               .map(String::toLowerCase)
               .collect(toSet());
         //@formatter:on
-        assertThat(teams).isEqualTo(set("f95", "fck", "fcn"));
+        assertThat(teams).contains("f95", "fck", "fcn");
     }
 
     @Test
@@ -33,7 +33,7 @@ public class StreamTest {
                   .map(String::toLowerCase)
                   .toJavaSet();
         //@formatter:on
-        assertThat(teams).isEqualTo(set("f95", "fck", "fcn"));
+        assertThat(teams).contains("f95", "fck", "fcn");
     }
 
     @Test

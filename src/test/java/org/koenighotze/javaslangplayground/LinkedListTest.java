@@ -1,12 +1,11 @@
 package org.koenighotze.javaslangplayground;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertNotSame;
-import static org.koenighotze.javaslangplayground.Team.withName;
-
+import javaslang.collection.List;
 import org.junit.Test;
 
-import javaslang.collection.List;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotSame;
+import static org.koenighotze.javaslangplayground.Team.withName;
 
 /**
  * @author David Schmitz

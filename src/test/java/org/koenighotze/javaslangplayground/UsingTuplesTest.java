@@ -1,11 +1,10 @@
 package org.koenighotze.javaslangplayground;
 
-import static javaslang.Tuple.of;
-import static org.fest.assertions.Assertions.assertThat;
-
+import javaslang.Tuple2;
 import org.junit.Test;
 
-import javaslang.Tuple2;
+import static javaslang.Tuple.of;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author dschmitz

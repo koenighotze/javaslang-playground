@@ -3,29 +3,41 @@ package org.koenighotze.javaslangplayground;
 import org.junit.Test;
 
 import static javaslang.Function1.lift;
-import static org.fest.assertions.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author David Schmitz
  */
 public class LiftTest {
 
-    private static String unsafe(String s) {
-        if (s.length() > 5) {
-            return s.toUpperCase();
+    private static String parseIban(String request) throws IllegalArgumentException {
+        if (request.length() > 5) {
+            return request.toUpperCase();
         }
 
-        throw new IllegalArgumentException(s + " is too short");
+        throw new IllegalArgumentException(request + " is too short");
+    }
+
+    @Test
+    public void classic_usage() {
+        String iban;
+        try {
+            iban = parseIban("AL47");
+        }
+        catch (IllegalArgumentException ex) {
+            iban = "";
+        }
+        assertThat(iban).isEqualTo("");
     }
 
     @Test
     public void safe_op() {
         //@formatter:off
-        String res =
-            lift(LiftTest::unsafe)
-            .apply("a")
-            .getOrElse("a is too short");
+        String iban =
+            lift(LiftTest::parseIban)
+            .apply("AL47")
+            .getOrElse("");
         //@formatter:on
-        assertThat(res).isEqualTo("a is too short");
+        assertThat(iban).isEqualTo("");
     }
 }

@@ -1,18 +1,17 @@
 package org.koenighotze.javaslangplayground;
 
-import static java.lang.Thread.sleep;
-import static java.util.concurrent.TimeUnit.SECONDS;
-import static org.fest.assertions.Assertions.assertThat;
+import javaslang.concurrent.Future;
+import javaslang.control.Option;
+import javaslang.control.Try;
+import org.junit.After;
+import org.junit.Test;
 
 import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
-import org.junit.After;
-import org.junit.Test;
-
-import javaslang.concurrent.Future;
-import javaslang.control.Option;
-import javaslang.control.Try;
+import static java.lang.Thread.sleep;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author dschmitz

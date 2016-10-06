@@ -1,16 +1,15 @@
 package org.koenighotze.javaslangplayground;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.koenighotze.javaslangplayground.Team.withName;
-
-import java.util.NoSuchElementException;
-
-import org.junit.Test;
-
 import javaslang.Tuple;
 import javaslang.Tuple2;
 import javaslang.collection.Queue;
 import javaslang.control.Option;
+import org.junit.Test;
+
+import java.util.NoSuchElementException;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.koenighotze.javaslangplayground.Team.withName;
 
 /**
  * @author David Schmitz

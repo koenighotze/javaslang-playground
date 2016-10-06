@@ -11,7 +11,7 @@ import static java.lang.Integer.*;
 import static java.time.LocalDate.*;
 import static java.util.Optional.*;
 import static javaslang.Function1.*;
-import static org.fest.assertions.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author dschmitz

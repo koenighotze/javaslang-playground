@@ -1,11 +1,10 @@
 package org.koenighotze.javaslangplayground;
 
-import static java.util.UUID.randomUUID;
-import static org.fest.assertions.Assertions.assertThat;
-
+import javaslang.Lazy;
 import org.junit.Test;
 
-import javaslang.Lazy;
+import static java.util.UUID.randomUUID;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author dschmitz
