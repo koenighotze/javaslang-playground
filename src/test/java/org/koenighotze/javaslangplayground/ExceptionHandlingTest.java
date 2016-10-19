@@ -1,18 +1,21 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.collection.List;
-import javaslang.control.Try;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.stream.Collectors;
-
 import static java.lang.String.join;
 import static java.nio.file.Paths.get;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.util.stream.Collectors;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.koenighotze.javaslangplayground.plain.User;
+import org.koenighotze.javaslangplayground.plain.UserRepository;
+
+import javaslang.collection.List;
+import javaslang.control.Try;
 
 /**
  * @author dschmitz

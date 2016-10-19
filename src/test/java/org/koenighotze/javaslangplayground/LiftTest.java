@@ -1,9 +1,11 @@
 package org.koenighotze.javaslangplayground;
 
+import static javaslang.Function1.lift;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
-import static javaslang.Function1.lift;
-import static org.assertj.core.api.Assertions.*;
+import javaslang.control.Try;
 
 /**
  * @author David Schmitz
@@ -27,6 +29,13 @@ public class LiftTest {
         catch (IllegalArgumentException ex) {
             iban = "";
         }
+        assertThat(iban).isEqualTo("");
+    }
+
+    @Test
+    public void use_with_try() {
+        String iban = Try.of(() -> parseIban("AL47")).getOrElse("");
+
         assertThat(iban).isEqualTo("");
     }
 

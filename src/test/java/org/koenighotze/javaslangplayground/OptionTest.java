@@ -1,16 +1,18 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.control.Option;
-import org.junit.Test;
-
 import static java.util.function.Function.identity;
 import static javaslang.API.$;
 import static javaslang.API.Case;
 import static javaslang.API.Match;
 import static javaslang.Patterns.None;
 import static javaslang.Patterns.Some;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Optional;
+
+import org.junit.Test;
+
+import javaslang.control.Option;
 
 /**
  * @author David Schmitz
@@ -20,7 +22,7 @@ public class OptionTest {
     public void sample_usage() {
         Option<String> option = Option.of("foo");
 
-        assertThat(option.getOrElse("other"), is("foo"));
+        assertThat(option.getOrElse("other")).isEqualTo("foo");
     }
 
     @Test
@@ -32,7 +34,7 @@ public class OptionTest {
             Case(None(), "nix")
         );
         // @formatter:on
-        assertThat(result, is("nix"));
+        assertThat(result).isEqualTo("nix");
     }
 
     @Test
@@ -45,9 +47,56 @@ public class OptionTest {
             Case(None(), "nix")
         );
         // @formatter:on
-        assertThat(result, is("other"));
+        assertThat(result).isEqualTo("other");
     }
 
+
+    @Test
+    public void cascading_if_nulls() {
+        org.koenighotze.javaslangplayground.plain.UserRepository repo = new org.koenighotze.javaslangplayground.plain.UserRepository();
+
+        org.koenighotze.javaslangplayground.plain.User user = repo.findOne("id");
+        String street = "";
+        if (user != null) {
+            Address address = user.getAddress();
+            if (null != address) {
+                street = address.getStreet();
+            }
+        }
+        assertThat(street).as("Street should have been initialized").isNotNull();
+    }
+
+
+    @Test
+    public void use_optinal_is_present() {
+        org.koenighotze.javaslangplayground.plain.UserRepository repo = new org.koenighotze.javaslangplayground.plain.UserRepository();
+
+        org.koenighotze.javaslangplayground.plain.User user = repo.findOne("id");
+        Optional<org.koenighotze.javaslangplayground.plain.User> optional = Optional.ofNullable(user);
+        if (optional.isPresent()) {
+
+        }
+
+        String street = "";
+        if (user != null) {
+            Address address = user.getAddress();
+            if (null != address) {
+                street = address.getStreet();
+            }
+        }
+        assertThat(street).as("Street should have been initialized").isNotNull();
+    }
+
+    @Test
+    public void fixing_things_with_option() {
+        UserRepository repo = new UserRepository();
+        String street =
+            repo.findOne("id")
+            .flatMap(User::getAddress)
+            .map(Address::getStreet)
+            .getOrElse("");
+        assertThat(street).as("Street should have been initialized").isNotNull();
+    }
 }
 
 

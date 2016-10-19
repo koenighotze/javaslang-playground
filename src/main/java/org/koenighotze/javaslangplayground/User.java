@@ -1,24 +1,26 @@
 package org.koenighotze.javaslangplayground;
 
+import javaslang.control.Option;
+
 /**
  * @author David Schmitz
  */
 public class User {
-    private Address address = new Address();
+    private Option<Address> address = Option.none();
 
-    public Address getAddress() {
+    public Option<Address> getAddress() {
         return address;
     }
 
     public void setAddress(Address address) {
-        this.address = address;
+        this.address = Option.of(address);
     }
 
     public boolean validateAddress() {
-        if (getAddress().getStreet().matches("^\\w+$")) {
-            throw new IllegalStateException("Invalid street " + getAddress().getStreet());
-        }
-
-        return true;
+        return
+          getAddress()
+            .map(Address::getStreet)
+            .map(street -> street.matches("^\\w+$"))
+            .getOrElseThrow(() -> new IllegalStateException("Invalid street " + getAddress()));
     }
 }
