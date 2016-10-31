@@ -1,17 +1,22 @@
 package org.koenighotze.javaslangplayground;
 
+import static java.util.Collections.emptyList;
 import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.toSet;
 import static javaslang.API.$;
 import static javaslang.API.Case;
 import static javaslang.API.Match;
 import static javaslang.Patterns.None;
 import static javaslang.Patterns.Some;
+import static javaslang.collection.List.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import org.junit.Test;
 
+import javaslang.collection.List;
 import javaslang.control.Option;
 
 /**
@@ -50,7 +55,6 @@ public class OptionTest {
         assertThat(result).isEqualTo("other");
     }
 
-
     @Test
     public void cascading_if_nulls() {
         org.koenighotze.javaslangplayground.plain.UserRepository repo = new org.koenighotze.javaslangplayground.plain.UserRepository();
@@ -65,7 +69,6 @@ public class OptionTest {
         }
         assertThat(street).as("Street should have been initialized").isNotNull();
     }
-
 
     @Test
     public void use_optinal_is_present() {
@@ -90,12 +93,34 @@ public class OptionTest {
     @Test
     public void fixing_things_with_option() {
         UserRepository repo = new UserRepository();
-        String street =
-            repo.findOne("id")
-            .flatMap(User::getAddress)
-            .map(Address::getStreet)
-            .getOrElse("");
+        String street = repo.findOne("id").flatMap(User::getAddress).map(Address::getStreet).getOrElse("");
         assertThat(street).as("Street should have been initialized").isNotNull();
+    }
+
+    @Test
+    public void old_school_list() {
+        java.util.List<String> roles = Arrays.asList("Foo", "Bar", "Baz");
+
+        //noinspection ConstantConditions
+        if (roles == null) {
+            roles = emptyList();
+        }
+
+        java.util.Set<String> result = roles.stream().map(String::toUpperCase).collect(toSet());
+        assertThat(result).contains("FOO", "BAR", "BAZ");
+    }
+
+    @Test
+    public void fix_old_school_list() {
+        List<String> roles = of("Foo", "Bar", "Baz");
+
+        List<String> result =
+            Option
+                .of(roles)                  // Option<List<String>>
+                .getOrElse(empty())         // List<String>
+                .map(String::toUpperCase);  // List<String>
+
+        assertThat(result).contains("FOO", "BAR", "BAZ");
     }
 }
 

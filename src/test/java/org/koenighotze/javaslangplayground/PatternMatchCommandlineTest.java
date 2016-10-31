@@ -8,6 +8,7 @@ import static javaslang.API.Match;
 import static javaslang.Patterns.Failure;
 import static javaslang.Patterns.Success;
 import static javaslang.Predicates.instanceOf;
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -68,6 +69,18 @@ public class PatternMatchCommandlineTest {
     }
 
     @Test
+    public void match_error_with_wildcard() {
+        //@formatter:off
+        List<String> result =
+        Match(fetchFromUrl("http://doesnotexist.uk")).of(
+            Case(Success($()), identity()),
+            Case(Failure($()), Collections.<String>emptyList())
+        );
+        //@formatter:on
+        assertThat(result).isEmpty();
+    }
+
+    @Test
     public void js_fetch_doesnotexist_with_mapping() {
         //@formatter:off
         List<String> result = Match(fetchFromUrl("http://doesnotexist.uk")).of(
@@ -76,8 +89,10 @@ public class PatternMatchCommandlineTest {
             Case(Failure($(instanceOf(MalformedURLException.class))), Collections.<String>emptyList())
         );
         //@formatter:on
-        System.out.println(result);
+        assertThat(result).isEmpty();
     }
+
+
 
     @Test
     public void js_fetch_not_an_url() {

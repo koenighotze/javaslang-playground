@@ -12,7 +12,7 @@ import javaslang.control.Try;
  */
 public class LiftTest {
 
-    private static String parseIban(String request) throws IllegalArgumentException {
+    static String parseIban(String request) throws IllegalArgumentException {
         if (request.length() > 5) {
             return request.toUpperCase();
         }
