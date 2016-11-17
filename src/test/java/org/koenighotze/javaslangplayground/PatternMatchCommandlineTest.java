@@ -84,7 +84,7 @@ public class PatternMatchCommandlineTest {
     public void js_fetch_doesnotexist_with_mapping() {
         //@formatter:off
         List<String> result = Match(fetchFromUrl("http://doesnotexist.uk")).of(
-            Case(Success($(new ArrayList<String>())), identity()),
+            Case(Success($(new ArrayList<>())), identity()),
             Case(Failure($(instanceOf(UnknownHostException.class))), Collections.<String>emptyList()),
             Case(Failure($(instanceOf(MalformedURLException.class))), Collections.<String>emptyList())
         );

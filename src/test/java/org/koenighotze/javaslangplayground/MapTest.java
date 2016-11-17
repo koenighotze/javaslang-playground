@@ -1,10 +1,14 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.collection.HashMap;
-import javaslang.control.Option;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import javaslang.API;
+import javaslang.API.Match;
+import javaslang.API.Match.Case;
+import javaslang.collection.HashMap;
+import javaslang.control.Option;
 
 /**
  * @author David Schmitz
@@ -24,4 +28,5 @@ public class MapTest {
 
         assertThat(quxValue.isEmpty()).isTrue();
     }
+
 }

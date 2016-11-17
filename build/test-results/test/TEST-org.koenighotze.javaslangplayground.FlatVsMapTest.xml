@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.koenighotze.javaslangplayground.FlatVsMapTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-11-13T21:11:31" hostname="schda-ambp2.fritz.box" time="0.004">
+  <properties/>
+  <testcase name="null_is_filtered_by_flatmap" classname="org.koenighotze.javaslangplayground.FlatVsMapTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

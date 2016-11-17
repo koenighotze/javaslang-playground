@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.koenighotze.javaslangplayground.StreamTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2016-11-13T21:11:33" hostname="schda-ambp2.fritz.box" time="0.018">
+  <properties/>
+  <testcase name="read_multiple_times_from_stream" classname="org.koenighotze.javaslangplayground.StreamTest" time="0.013"/>
+  <testcase name="javaslang_stream" classname="org.koenighotze.javaslangplayground.StreamTest" time="0.003"/>
+  <testcase name="standard_java8_stream" classname="org.koenighotze.javaslangplayground.StreamTest" time="0.001"/>
+  <testcase name="java8stream" classname="org.koenighotze.javaslangplayground.StreamTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

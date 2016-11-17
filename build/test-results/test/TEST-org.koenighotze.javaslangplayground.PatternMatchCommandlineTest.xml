@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-11-13T21:11:33" hostname="schda-ambp2.fritz.box" time="0.26">
+  <properties/>
+  <testcase name="js_fetch_doesnotexist_with_mapping" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.085"/>
+  <testcase name="js_fetch_doesnotexist" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.001"/>
+  <testcase name="foo" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.0"/>
+  <testcase name="match_error_with_wildcard" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.001"/>
+  <testcase name="js_fetch_not_an_url" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.001"/>
+  <testcase name="js_fetch" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.112"/>
+  <testcase name="classic_exception_handling" classname="org.koenighotze.javaslangplayground.PatternMatchCommandlineTest" time="0.058"/>
+  <system-out><![CDATA[FFFF
+[]
+Success([<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">, <html><head>, <title>301 Moved Permanently</title>, </head><body>, <h1>Moved Permanently</h1>, <p>The document has moved <a href="https://www.senacor.com/">here</a>.</p>, <hr>, <address>Apache/2.4.20 Server at senacor.com Port 80</address>, </body></html>])
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

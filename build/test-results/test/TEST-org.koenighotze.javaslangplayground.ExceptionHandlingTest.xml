@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.koenighotze.javaslangplayground.ExceptionHandlingTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2016-11-13T21:11:31" hostname="schda-ambp2.fritz.box" time="0.124">
+  <properties/>
+  <testcase name="wrap_an_exception_with_try" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.079"/>
+  <testcase name="catch_exceptions_in_a_functional_way" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.006"/>
+  <testcase name="handle_exceptions_in_classic_lamdba" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.015"/>
+  <testcase name="reading_a_file_returns_all_lines" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.01"/>
+  <testcase name="apply_checked_exception_function_to_list_of_users" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.0"/>
+  <testcase name="handle_exceptions_using_javaslang" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.013"/>
+  <testcase name="simple_try_usage" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.001"/>
+  <testcase name="reading_non_existing_files_fails" classname="org.koenighotze.javaslangplayground.ExceptionHandlingTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

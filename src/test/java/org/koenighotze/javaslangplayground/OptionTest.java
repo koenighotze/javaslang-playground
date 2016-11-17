@@ -8,7 +8,8 @@ import static javaslang.API.Case;
 import static javaslang.API.Match;
 import static javaslang.Patterns.None;
 import static javaslang.Patterns.Some;
-import static javaslang.collection.List.*;
+import static javaslang.collection.List.empty;
+import static javaslang.collection.List.of;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
@@ -123,5 +124,7 @@ public class OptionTest {
         assertThat(result).contains("FOO", "BAR", "BAZ");
     }
 }
+
+
 
 

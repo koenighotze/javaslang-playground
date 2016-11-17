@@ -1,12 +1,13 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.collection.Stream;
-import org.junit.Test;
+import static java.util.stream.Collectors.toSet;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 
-import static java.util.stream.Collectors.toSet;
-import static org.assertj.core.api.Assertions.*;
+import org.junit.Test;
+
+import javaslang.collection.Stream;
 
 
 /**
@@ -40,8 +41,8 @@ public class StreamTest {
     public void read_multiple_times_from_stream() {
         Stream<String> sample = Stream.of("a", "B", "c");
 
-        sample.map(String::toUpperCase);
-        sample.map(String::toUpperCase);
+        assertThat(sample.map(String::toUpperCase).take(3)).contains("A", "B", "C");
+        assertThat(sample.map(String::toLowerCase).take(3)).contains("a", "b", "c");
     }
 
     // cannot read multiple times from a jdk stream
