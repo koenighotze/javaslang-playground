@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.koenighotze.javaslangplayground.LinkedListTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-11-13T21:11:33" hostname="schda-ambp2.fritz.box" time="0.001">
-  <properties/>
-  <testcase name="a_linked_list_is_persistent" classname="org.koenighotze.javaslangplayground.LinkedListTest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
