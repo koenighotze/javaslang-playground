@@ -96,7 +96,7 @@ public class BasicCircuitBreakerTest {
     }
 
     private void assertThatCircuitIsHalfOpen() throws Throwable {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         supplier.get(); // trigger supplier
         assertThat(circuitBreaker.getState()).isEqualTo(HALF_OPEN);
     }
