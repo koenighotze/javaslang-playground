@@ -15,10 +15,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.Optional;
 
-import org.junit.Test;
-
+import javaslang.Patterns;
 import javaslang.collection.List;
 import javaslang.control.Option;
+import org.junit.Test;
 
 /**
  * @author David Schmitz
@@ -50,7 +50,7 @@ public class OptionTest {
         String result = Match(option).of(
             Case(Some($(v -> v.length() > 4)), identity()),
             Case(Some($()), "other"),
-            Case(None(), "nix")
+            Case(Patterns.<String>None(), "nix")
         );
         // @formatter:on
         assertThat(result).isEqualTo("other");
@@ -72,7 +72,7 @@ public class OptionTest {
     }
 
     @Test
-    public void use_optinal_is_present() {
+    public void use_optional_is_present() {
         org.koenighotze.javaslangplayground.plain.UserRepository repo = new org.koenighotze.javaslangplayground.plain.UserRepository();
 
         org.koenighotze.javaslangplayground.plain.User user = repo.findOne("id");
