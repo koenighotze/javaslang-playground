@@ -48,8 +48,8 @@ public class OptionTest {
         Option<String> option = Option.of("bla");
         // @formatter:off
         String result = Match(option).of(
-            Case(Some($(v -> v.length() > 4)), identity()),
-            Case(Some($()), "other"),
+            Case(Patterns.<String, String>Some($(v -> v.length() > 4)), identity()),
+            Case(Patterns.<String, String>Some($()), "other"),
             Case(Patterns.<String>None(), "nix")
         );
         // @formatter:on
