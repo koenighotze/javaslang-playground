@@ -9,16 +9,20 @@ description = """Playground for demonstrating core features of Javaslang"""
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 repositories {
-
-     maven { url "http://repo.maven.apache.org/maven2" }
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
 }
 dependencies {
-    compile group: 'io.javaslang', name: 'javaslang', version: '2.0.4'
-    compile group: 'io.javaslang', name: 'javaslang-jackson', version: '2.0.4'
+    compile group: 'io.javaslang', name: 'javaslang', version: '2.0.5'
+    compile group: 'io.javaslang', name: 'javaslang-jackson', version: '2.0.5'
+    compile group: 'io.javaslang', name: 'javaslang-test', version: '2.0.5'
+    compile group: 'io.javaslang', name: 'javaslang-render', version: '2.0.0'
     compile group: 'io.github.robwin', name: 'javaslang-circuitbreaker', version: '0.6.0'
     compile group: 'org.assertj', name: 'assertj-core', version: '3.5.2'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
