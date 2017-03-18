@@ -23,4 +23,8 @@ public class User {
             .map(street -> street.matches("^\\w+$"))
             .getOrElseThrow(() -> new IllegalStateException("Invalid street " + getAddress()));
     }
+
+    public boolean validate() {
+        return false;
+    }
 }

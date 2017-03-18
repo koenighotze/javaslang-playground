@@ -21,9 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
-
 import javaslang.control.Try;
+import org.junit.Test;
 
 /**
  * @author David Schmitz
@@ -92,6 +91,13 @@ public class PatternMatchCommandlineTest {
         assertThat(result).isEmpty();
     }
 
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void boom() {
+        Collections
+            .unmodifiableList(Collections.emptyList())
+            .add("BUMM");
+    }
 
 
     @Test
