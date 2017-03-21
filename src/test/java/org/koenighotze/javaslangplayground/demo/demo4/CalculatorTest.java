@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.propertytest;
+package org.koenighotze.javaslangplayground.demo.demo4;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -40,6 +40,4 @@ public class CalculatorTest {
                 .check(1000, 50)
                 .assertIsSatisfied();
     }
-
-    // todo: build custom Generator for stream of Random Tuples
 }

@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.propertytest;
+package org.koenighotze.javaslangplayground.demo.demo4;
 
 import static java.lang.String.format;
 import static java.lang.System.out;

@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.patternmatching;
+package org.koenighotze.javaslangplayground.demo.demo3;
 
 import javaslang.collection.List;
 
