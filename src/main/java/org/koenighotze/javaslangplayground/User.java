@@ -24,7 +24,7 @@ public class User {
             .getOrElseThrow(() -> new IllegalStateException("Invalid street " + getAddress()));
     }
 
-    public boolean validate() {
+    public boolean validate() throws Exception {
         return false;
     }
 }

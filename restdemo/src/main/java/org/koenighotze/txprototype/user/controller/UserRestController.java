@@ -25,6 +25,8 @@ import org.koenighotze.txprototype.user.model.User;
 import org.koenighotze.txprototype.user.repository.UserRepository;
 import org.koenighotze.txprototype.user.resources.UserResource;
 import org.koenighotze.txprototype.user.resources.UsersResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,6 +42,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/users", produces = APPLICATION_JSON_UTF8_VALUE)
 public class UserRestController {
+    private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
     private final UserRepository userRepository;
 
@@ -60,6 +63,7 @@ public class UserRestController {
     // example PUT for creating resource
     @RequestMapping(value = "/{publicId}", method = PUT, consumes = APPLICATION_JSON_UTF8_VALUE)
     public HttpEntity<UserResource> newUser(@PathVariable String publicId, @RequestBody User user) {
+        logger.info("Should store {}", user);
         //@formatter:off
         User userToStore = Option.of(userRepository.findByPublicId(publicId))
                 .map(foundUser -> {
@@ -100,7 +104,6 @@ public class UserRestController {
                             return httpHeaders;
                         });
 
-        // TODO: react to errors
         return Match(result).of(
                 Case(Some($(instanceOf(HttpHeaders.class))), h -> new ResponseEntity<>(null, h, PERMANENT_REDIRECT)),
                 Case($(), new ResponseEntity<>(null, NOT_FOUND))

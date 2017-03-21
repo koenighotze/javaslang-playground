@@ -1,17 +1,13 @@
-package org.koenighotze.javaslangplayground.demo.intro.javaslang;
+package org.koenighotze.javaslangplayground.demo.demo1.javaslang;
 
 import javaslang.collection.List;
 import javaslang.control.Try;
 import org.koenighotze.javaslangplayground.User;
 
-/**
- * @author David Schmitz
- */
 public class Demo1Refactored {
-
-    public List<User> filterValidUsers(java.util.List<User> users) {
+    public List<User> filterValidUsers(List<User> users) {
         return
-            List.ofAll(users)
+            users
                 .filter(user -> Try.of(user::validate)
                                    .getOrElse(false));
     }
