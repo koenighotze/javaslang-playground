@@ -62,8 +62,12 @@ public class UserRestControllerPropertyTest {
     @Test
     public void create_a_user_using_put() throws Exception {
         Property.def("Should not go boom")
-                .forAll(arbitraryUnicodeString(), arbitraryUnicodeString(), arbitraryNick(), rfcEmail())
-                .suchThat((String name, String last, String nick, String email) -> putUser(name, last, nick, email) == CREATED.value())
+                .forAll(arbitraryUnicodeString(),
+                        arbitraryUnicodeString(),
+                        arbitraryNick(),
+                        rfcEmail())
+                .suchThat((String name, String last, String nick, String email) ->
+                           putUser(name, last, nick, email) == CREATED.value())
                 .check()
                 .assertIsSatisfied();
     }

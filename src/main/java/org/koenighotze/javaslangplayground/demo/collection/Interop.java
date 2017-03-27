@@ -11,7 +11,7 @@ import org.koenighotze.javaslangplayground.demo.collection.jdk8.UserRepo;
 public class Interop {
     public List<User> findUserByName() {
         return List.ofAll(
-                new UserRepo().findAllUsers() // jdk8 list
+                new UserRepo().findAllUsers() // java8 list
                );
     }
 

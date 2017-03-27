@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.demo2.jdk8;
+package org.koenighotze.javaslangplayground.demo.demo2.java8;
 
 import org.koenighotze.javaslangplayground.Address;
 import org.koenighotze.javaslangplayground.plain.User;
