@@ -10,6 +10,7 @@ import java.util.function.*;
 
 import javaslang.collection.*;
 import javaslang.control.*;
+import org.apache.http.impl.client.*;
 import org.koenighotze.resilience4j.model.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;

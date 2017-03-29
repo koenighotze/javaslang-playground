@@ -8,6 +8,10 @@ import org.koenighotze.javaslangplayground.demo.demo3.*;
 public class Refactored {
 
     private static String fetchTweets(Response response) {
+        List<String> original = List.of("baz");
+
+        List<String> mod = original.append("qux");
+
         return null;
     }
 

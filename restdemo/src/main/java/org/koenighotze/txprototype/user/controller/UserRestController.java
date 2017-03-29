@@ -16,25 +16,17 @@ import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
-import java.net.URI;
-import javax.inject.Inject;
+import java.net.*;
+import javax.inject.*;
 
-import javaslang.collection.List;
-import javaslang.control.Option;
-import org.koenighotze.txprototype.user.model.User;
-import org.koenighotze.txprototype.user.repository.UserRepository;
-import org.koenighotze.txprototype.user.resources.UserResource;
-import org.koenighotze.txprototype.user.resources.UsersResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import javaslang.collection.*;
+import javaslang.control.*;
+import org.koenighotze.txprototype.user.model.*;
+import org.koenighotze.txprototype.user.repository.*;
+import org.koenighotze.txprototype.user.resources.*;
+import org.springframework.http.*;
+import org.springframework.stereotype.*;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author David Schmitz
@@ -42,7 +34,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value = "/users", produces = APPLICATION_JSON_UTF8_VALUE)
 public class UserRestController {
-    private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
     private final UserRepository userRepository;
 
@@ -63,7 +54,7 @@ public class UserRestController {
     // example PUT for creating resource
     @RequestMapping(value = "/{publicId}", method = PUT, consumes = APPLICATION_JSON_UTF8_VALUE)
     public HttpEntity<UserResource> newUser(@PathVariable String publicId, @RequestBody User user) {
-        logger.info("Should store {}", user);
+
         //@formatter:off
         User userToStore = Option.of(userRepository.findByPublicId(publicId))
                 .map(foundUser -> {
@@ -77,9 +68,12 @@ public class UserRestController {
 
         UserResource userResource = new UserResource(userToStore);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setLocation(URI.create(userResource.getLink(REL_SELF).getHref()));
+        httpHeaders.setLocation(URI.create(userResource.getLink(REL_SELF)
+                                                       .getHref()));
 
-        HttpStatus status = Option.of(userToStore.getUserId()).map(id -> OK).getOrElse(CREATED);
+        HttpStatus status = Option.of(userToStore.getUserId())
+                                  .map(id -> OK)
+                                  .getOrElse(CREATED);
         userRepository.save(userToStore);
 
         return new ResponseEntity<>(userResource, httpHeaders, status);

@@ -10,7 +10,7 @@ import javaslang.test.*;
 /**
  * @author David Schmitz
  */
-public class ArbitraryData {
+class ArbitraryData {
     private static Gen<Character> localPart() {
         Array<Character> characters = Array.ofAll("!#$%&'*+-/=?^_`{|}~".toCharArray());
 
@@ -33,32 +33,37 @@ public class ArbitraryData {
         );
     }
 
-    public static javaslang.test.Arbitrary<String> rfcEmail() {
-        javaslang.test.Arbitrary<String> arbitraryLocal =
-            javaslang.test.Arbitrary.string(localPart())
-                                    .filter(localPart -> !"".equals(localPart))
-                                    .filter(localPart -> !localPart.startsWith("."))
-                                    .filter(localPart -> !localPart.endsWith("."))
-                                    .filter(localPart -> localPart.split("\\.").length <= 1);
+    // not really 100% rfc compatible
+    static Arbitrary<String> rfcEmail() {
+        //@formatter:off
+        Arbitrary<String> arbitraryLocal =
+            string(localPart())
+                    .filter(localPart -> !"".equals(localPart))
+                    .filter(localPart -> !localPart.startsWith("."))
+                    .filter(localPart -> !localPart.endsWith("."))
+                    .filter(localPart -> localPart.split("\\.").length <= 1);
 
-        javaslang.test.Arbitrary<String> arbitraryDomain =
-            javaslang.test.Arbitrary.string(domainPart())
-                                    .filter(domainPart -> !"".equals(domainPart))
-                                    .filter(domainPart -> !domainPart.startsWith("-"))
-                                    .filter(domainPart -> !domainPart.endsWith("-"))
-                                    .filter(domainPart -> !domainPart.startsWith("."))
-                                    .filter(domainPart -> !domainPart.endsWith("."));
+        Arbitrary<String> arbitraryDomain =
+            string(domainPart())
+                    .filter(domainPart -> !"".equals(domainPart))
+                    .filter(domainPart -> !domainPart.startsWith("-"))
+                    .filter(domainPart -> !domainPart.endsWith("-"))
+                    .filter(domainPart -> !domainPart.startsWith("."))
+                    .filter(domainPart -> !domainPart.endsWith("."))
+                    .filter(domainPart -> !domainPart.contains(".."));
+        //@formatter:on
 
         return arbitraryLocal
             .flatMap(localPart -> arbitraryDomain.map(domain -> localPart + "@" + domain));
     }
 
-    public static javaslang.test.Arbitrary<String> arbitraryNick() {
+    static Arbitrary<String> arbitraryNick() {
         return string(choose('a', 'z'));
     }
 
-    public static javaslang.test.Arbitrary<String> arbitraryUnicodeString() {
+    static Arbitrary<String> arbitraryUnicodeString() {
         Gen<Character> randomUnicode = random -> (char) random.nextInt();
+
         return string(randomUnicode);
     }
 }

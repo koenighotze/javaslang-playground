@@ -61,7 +61,7 @@ public class DemoApplication {
                                                           .ringBufferSizeInHalfOpenState(2)
                                                           .waitDurationInOpenState(Duration.ofMillis(1000))
                                                           .recordFailure(failure -> {
-                                                              logger.warn("Error recorded", failure);
+                                                              logger.warn("Error recorded: ", failure.getMessage());
                                                               return true;
                                                           })
                                                           .build();

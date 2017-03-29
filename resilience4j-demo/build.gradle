@@ -28,9 +28,10 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.social:spring-social-twitter")
 	compile("io.javaslang:javaslang-jackson:2.0.5")
-	// compile('io.github.resilience4j:resilience4j-all:0.9-SNAPSHOT')
 	compile "io.github.robwin:javaslang-circuitbreaker:0.8.2"
-	compile('org.apache.httpcomponents:httpclient:4.5.3')
+	compile("org.apache.httpcomponents:httpclient:4.5.3")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	runtime('org.springframework.boot:spring-boot-devtools')
+
+	// compile('io.github.resilience4j:resilience4j-all:0.9-SNAPSHOT')
 }

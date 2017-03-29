@@ -1,7 +1,7 @@
 package org.koenighotze.txprototype.user.controller;
 
 import static java.util.UUID.randomUUID;
-import static org.koenighotze.txprototype.user.controller.ArbitraryData.*;
+import static org.koenighotze.txprototype.user.controller.ArbitraryData.arbitraryNick;
 import static org.koenighotze.txprototype.user.controller.ArbitraryData.arbitraryUnicodeString;
 import static org.koenighotze.txprototype.user.controller.ArbitraryData.rfcEmail;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -17,6 +17,7 @@ import org.junit.*;
 import org.junit.runner.*;
 import org.koenighotze.txprototype.user.*;
 import org.koenighotze.txprototype.user.model.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.autoconfigure.mongo.embedded.*;
 import org.springframework.boot.test.context.*;
@@ -35,9 +36,12 @@ import org.springframework.web.context.*;
 @SpringBootTest(classes = {UserAdministrationApplication.class, EmbeddedMongoAutoConfiguration.class})
 @WebAppConfiguration
 public class UserRestControllerPropertyTest {
+    private static final Logger logger = LoggerFactory.getLogger(UserRestControllerPropertyTest.class);
 
     @Autowired
     private WebApplicationContext webApplicationContext;
+    private MockMvc mockMvc;
+    private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
     @Autowired
     void setConverters(HttpMessageConverter<?>[] converters) {
@@ -47,8 +51,12 @@ public class UserRestControllerPropertyTest {
                                                   .getOrElseThrow(() -> new RuntimeException("No Converter found!"));
     }
 
-    private MockMvc mockMvc;
-    private HttpMessageConverter mappingJackson2HttpMessageConverter;
+    @SuppressWarnings("unchecked")
+    private String json(Object o) throws IOException {
+        MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
+        mappingJackson2HttpMessageConverter.write(o, APPLICATION_JSON, mockHttpOutputMessage);
+        return mockHttpOutputMessage.getBodyAsString();
+    }
 
     @Before
     public void setup() {
@@ -57,19 +65,25 @@ public class UserRestControllerPropertyTest {
 
     @Test
     public void create_a_user_using_put() throws Exception {
+        //@formatter:off
         Property.def("Should not go boom")
                 .forAll(arbitraryUnicodeString(),
                         arbitraryUnicodeString(),
                         arbitraryNick(),
                         rfcEmail())
-                .suchThat((String name, String last, String nick, String email) ->
-                           putUser(name, last, nick, email) == CREATED.value())
+                .suchThat((String name,
+                           String last,
+                           String nick,
+                           String email) -> createUser(name, last, nick, email) == CREATED.value())
                 .check()
                 .assertIsSatisfied();
+        //@formatter:on
     }
 
-    private int putUser(String name, String last, String nick, String email) throws Exception {
+    private int createUser(String name, String last, String nick, String email) throws Exception {
         User user = new User(randomUUID().toString(), name, last, nick, email);
+
+        logger.info("Creating name = {}, email = {}", name, email);
         ResultActions perform = mockMvc.perform(put("/users/{id}", user.getPublicId()).contentType(APPLICATION_JSON)
                                                                                       .content(json(user)));
         return perform.andReturn()
@@ -77,10 +91,4 @@ public class UserRestControllerPropertyTest {
                       .getStatus();
     }
 
-    @SuppressWarnings("unchecked")
-    private String json(Object o) throws IOException {
-        MockHttpOutputMessage mockHttpOutputMessage = new MockHttpOutputMessage();
-        mappingJackson2HttpMessageConverter.write(o, APPLICATION_JSON, mockHttpOutputMessage);
-        return mockHttpOutputMessage.getBodyAsString();
-    }
 }
