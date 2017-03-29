@@ -5,9 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 
-import org.junit.Test;
-
-import javaslang.collection.Stream;
+import javaslang.collection.*;
+import org.junit.*;
 
 
 /**

@@ -1,36 +1,32 @@
 package org.koenighotze.txprototype.user.controller;
 
 import static java.util.UUID.randomUUID;
-import static javaslang.test.Arbitrary.string;
-import static javaslang.test.Gen.choose;
-import static org.koenighotze.txprototype.user.controller.ArbitraryEmail.rfcEmail;
+import static org.koenighotze.txprototype.user.controller.ArbitraryData.*;
+import static org.koenighotze.txprototype.user.controller.ArbitraryData.arbitraryUnicodeString;
+import static org.koenighotze.txprototype.user.controller.ArbitraryData.rfcEmail;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import java.io.IOException;
+import java.io.*;
 
-import javaslang.collection.List;
-import javaslang.test.Arbitrary;
-import javaslang.test.Gen;
-import javaslang.test.Property;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.koenighotze.txprototype.user.UserAdministrationApplication;
-import org.koenighotze.txprototype.user.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.mock.http.MockHttpOutputMessage;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.web.context.WebApplicationContext;
+import javaslang.collection.*;
+import javaslang.test.*;
+import org.junit.*;
+import org.junit.runner.*;
+import org.koenighotze.txprototype.user.*;
+import org.koenighotze.txprototype.user.model.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.autoconfigure.mongo.embedded.*;
+import org.springframework.boot.test.context.*;
+import org.springframework.http.converter.*;
+import org.springframework.http.converter.json.*;
+import org.springframework.mock.http.*;
+import org.springframework.test.context.junit4.*;
+import org.springframework.test.context.web.*;
+import org.springframework.test.web.servlet.*;
+import org.springframework.web.context.*;
 
 /**
  * @author David Schmitz
@@ -79,15 +75,6 @@ public class UserRestControllerPropertyTest {
         return perform.andReturn()
                       .getResponse()
                       .getStatus();
-    }
-
-    private Arbitrary<String> arbitraryNick() {
-        return string(choose('a', 'z'));
-    }
-
-    private Arbitrary<String> arbitraryUnicodeString() {
-        Gen<Character> randomUnicode = random -> (char) random.nextInt();
-        return string(randomUnicode);
     }
 
     @SuppressWarnings("unchecked")

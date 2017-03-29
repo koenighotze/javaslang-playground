@@ -3,7 +3,7 @@ package org.koenighotze.txprototype.user.controller;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import static java.util.regex.Pattern.compile;
 import static javaslang.test.Gen.choose;
-import static org.koenighotze.txprototype.user.controller.ArbitraryEmail.rfcEmail;
+import static org.koenighotze.txprototype.user.controller.ArbitraryData.rfcEmail;
 
 import java.util.Random;
 import java.util.regex.Pattern;

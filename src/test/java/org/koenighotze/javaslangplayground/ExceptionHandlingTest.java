@@ -10,16 +10,14 @@ import static javaslang.Predicates.instanceOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.koenighotze.javaslangplayground.LiftTest.parseIban;
 
-import java.io.IOException;
-import java.util.stream.Collectors;
+import java.io.*;
+import java.util.stream.*;
 
-import org.junit.Before;
-import org.junit.Test;
+import javaslang.collection.*;
+import javaslang.control.*;
+import org.junit.*;
 import org.koenighotze.javaslangplayground.plain.User;
 import org.koenighotze.javaslangplayground.plain.UserRepository;
-
-import javaslang.collection.List;
-import javaslang.control.Try;
 
 /**
  * @author dschmitz
@@ -52,7 +50,9 @@ public class ExceptionHandlingTest {
 
     @Test
     public void simple_try_usage() {
-        String result = Try.of(() -> new FileReader().readFile(get("/etc/hosts"))).map(liste -> join(", ", liste)).get();
+        String result = Try.of(() -> new FileReader().readFile(get("/etc/hosts")))
+                           .map(liste -> join(", ", liste))
+                           .getOrElse("Default");
         assertThat(result).isNotEmpty();
     }
 
@@ -62,26 +62,23 @@ public class ExceptionHandlingTest {
 
     @Test
     public void handle_exceptions_in_classic_lamdba() {
-        java.util.List<User> validUsers =
-                users.stream()
-                .filter(user ->
-                {
-                    try {
-                        return user.validateAddress();
-                    } catch (IllegalStateException isex) {
-                        return false;
-                    }
-                })
-                .collect(Collectors.toList());
+        java.util.List<User> validUsers = users.stream()
+                                               .filter(user -> {
+                                                   try {
+                                                       return user.validateAddress();
+                                                   } catch (IllegalStateException isex) {
+                                                       return false;
+                                                   }
+                                               })
+                                               .collect(Collectors.toList());
         assertThat(validUsers.size()).isEqualTo(1);
     }
 
     @Test
     public void handle_exceptions_using_javaslang() {
-        List<User> validUsers =
-                List.ofAll(users)
-                        .filter(user -> Try.of(user::validateAddress)
-                                .getOrElse(false));
+        List<User> validUsers = List.ofAll(users)
+                                    .filter(user -> Try.of(user::validateAddress)
+                                                       .getOrElse(false));
 
         assertThat(validUsers.size()).isEqualTo(1);
     }
@@ -119,18 +116,13 @@ public class ExceptionHandlingTest {
 
     @Test
     public void wrap_an_exception_with_try() {
-        String result =
-            Try.of(() -> parseIban("AL.."))
-               .getOrElse("");
+        String result = Try.of(() -> parseIban("AL.."))
+                           .getOrElse("");
         assertThat(result).isEqualTo("");
 
-        result =
-            Try.of(() -> parseIban("AL.."))
-            .recover(t -> Match(t)
-                           .of(
-                               Case(instanceOf(IllegalArgumentException.class),
-                                    "not an valid iban")))
-            .get();
+        result = Try.of(() -> parseIban("AL.."))
+                    .recover(t -> Match(t).of(Case(instanceOf(IllegalArgumentException.class), "not an valid iban")))
+                    .get();
 
         assertThat(result).isEqualTo("not an valid iban");
     }
