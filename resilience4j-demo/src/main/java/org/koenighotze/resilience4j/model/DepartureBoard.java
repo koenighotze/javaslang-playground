@@ -1,8 +1,8 @@
 package org.koenighotze.resilience4j.model;
 
 import com.fasterxml.jackson.annotation.*;
-import javaslang.collection.*;
-import javaslang.control.*;
+import io.vavr.collection.*;
+import io.vavr.control.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DepartureBoard {

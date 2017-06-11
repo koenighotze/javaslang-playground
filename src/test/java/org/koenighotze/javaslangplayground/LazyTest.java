@@ -1,6 +1,6 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.Lazy;
+import io.vavr.Lazy;
 import org.junit.Test;
 
 import static java.util.UUID.randomUUID;

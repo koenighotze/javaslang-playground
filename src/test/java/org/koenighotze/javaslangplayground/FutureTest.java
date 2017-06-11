@@ -1,17 +1,15 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.concurrent.Future;
-import javaslang.control.Option;
-import javaslang.control.Try;
-import org.junit.After;
-import org.junit.Test;
-
-import java.util.NoSuchElementException;
-import java.util.logging.Logger;
-
 import static java.lang.Thread.sleep;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.concurrent.*;
+import java.util.logging.*;
+
+import io.vavr.concurrent.Future;
+import io.vavr.control.*;
+import org.junit.*;
 
 /**
  * @author dschmitz
@@ -48,7 +46,7 @@ public class FutureTest {
         assertThat(longRunningFuture.cancel()).isTrue();
     }
 
-    @Test(expected = NoSuchElementException.class)
+    @Test(expected = CancellationException.class)
     public void a_canceled_future_throws_an_ex() {
         longRunningFuture = createTask();
         longRunningFuture.cancel();

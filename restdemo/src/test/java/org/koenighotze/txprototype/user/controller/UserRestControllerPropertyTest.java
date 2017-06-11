@@ -11,8 +11,8 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 
 import java.io.*;
 
-import javaslang.collection.*;
-import javaslang.test.*;
+import io.vavr.collection.*;
+import io.vavr.test.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.koenighotze.txprototype.user.*;

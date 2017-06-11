@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.*;
 import io.github.robwin.circuitbreaker.*;
 import io.github.robwin.retry.*;
 import io.github.robwin.retry.internal.*;
-import javaslang.jackson.datatype.*;
+import io.vavr.jackson.datatype.*;
 import org.slf4j.*;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;

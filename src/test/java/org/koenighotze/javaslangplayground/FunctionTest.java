@@ -1,7 +1,7 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.*;
-import javaslang.control.*;
+import io.vavr.*;
+import io.vavr.control.*;
 import org.junit.*;
 
 import java.util.*;
@@ -10,7 +10,7 @@ import java.util.function.*;
 import static java.lang.Integer.*;
 import static java.time.LocalDate.*;
 import static java.util.Optional.*;
-import static javaslang.Function1.*;
+import static io.vavr.Function1.*;
 import static org.assertj.core.api.Assertions.*;
 
 /**

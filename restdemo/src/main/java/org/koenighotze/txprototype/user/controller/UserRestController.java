@@ -1,10 +1,10 @@
 package org.koenighotze.txprototype.user.controller;
 
-import static javaslang.API.$;
-import static javaslang.API.Case;
-import static javaslang.API.Match;
-import static javaslang.Patterns.Some;
-import static javaslang.Predicates.instanceOf;
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static io.vavr.Patterns.Some;
+import static io.vavr.Predicates.instanceOf;
 import static org.koenighotze.txprototype.user.controller.IanaRel.COLLECTION;
 import static org.springframework.hateoas.Link.REL_SELF;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -19,8 +19,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 import java.net.*;
 import javax.inject.*;
 
-import javaslang.collection.*;
-import javaslang.control.*;
+import io.vavr.collection.*;
+import io.vavr.control.*;
 import org.koenighotze.txprototype.user.model.*;
 import org.koenighotze.txprototype.user.repository.*;
 import org.koenighotze.txprototype.user.resources.*;

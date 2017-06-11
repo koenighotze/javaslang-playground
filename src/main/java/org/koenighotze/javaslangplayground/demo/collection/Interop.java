@@ -1,6 +1,6 @@
 package org.koenighotze.javaslangplayground.demo.collection;
 
-import javaslang.collection.List;
+import io.vavr.collection.List;
 import org.koenighotze.javaslangplayground.User;
 import org.koenighotze.javaslangplayground.demo.collection.jdk8.UserRepo;
 

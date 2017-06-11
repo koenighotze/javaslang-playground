@@ -1,9 +1,6 @@
 package org.koenighotze.javaslangplayground.demo.treedemo;
 
-import static java.lang.System.out;
-import static javaslang.render.text.PrettyPrinter.pp;
-
-import javaslang.collection.TreeSet;
+import io.vavr.collection.*;
 
 public class TreeDemo {
 
@@ -11,8 +8,8 @@ public class TreeDemo {
         TreeSet<String> tree = TreeSet.of("C3PO", "R2D2", "K2SO");
         TreeSet<String> tree2 = tree.add("Chopper");
 
-        out.println(pp(tree.toTree()));
-        out.println(pp(tree2.toTree()));
+//        out.println(pp(tree.toTree()));
+//        out.println(pp(tree2.toTree()));
     }
 
     public static void main(String[] args) {

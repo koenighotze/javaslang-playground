@@ -2,15 +2,15 @@ package org.koenighotze.txprototype.user.controller;
 
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import static java.util.regex.Pattern.compile;
-import static javaslang.test.Gen.choose;
+import static io.vavr.test.Gen.choose;
 import static org.koenighotze.txprototype.user.controller.ArbitraryData.rfcEmail;
 
 import java.util.Random;
 import java.util.regex.Pattern;
 
-import javaslang.test.Arbitrary;
-import javaslang.test.Gen;
-import javaslang.test.Property;
+import io.vavr.test.Arbitrary;
+import io.vavr.test.Gen;
+import io.vavr.test.Property;
 import org.junit.Test;
 
 /**

@@ -1,15 +1,15 @@
 package org.koenighotze.resilience4j;
 
-import static javaslang.API.$;
-import static javaslang.API.Case;
-import static javaslang.API.Match;
-import static javaslang.collection.List.empty;
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static io.vavr.collection.List.empty;
 import static org.springframework.http.HttpStatus.OK;
 
 import java.util.function.*;
 
-import javaslang.collection.*;
-import javaslang.control.*;
+import io.vavr.collection.*;
+import io.vavr.control.*;
 import org.apache.http.impl.client.*;
 import org.koenighotze.resilience4j.model.*;
 import org.springframework.beans.factory.annotation.*;

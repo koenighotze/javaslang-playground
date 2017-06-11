@@ -1,9 +1,9 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.Tuple;
-import javaslang.Tuple2;
-import javaslang.collection.Queue;
-import javaslang.control.Option;
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
+import io.vavr.collection.Queue;
+import io.vavr.control.Option;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;

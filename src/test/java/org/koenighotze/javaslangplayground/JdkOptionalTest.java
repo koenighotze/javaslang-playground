@@ -1,6 +1,6 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.control.Option;
+import io.vavr.control.Option;
 import org.junit.Test;
 
 import java.util.HashMap;

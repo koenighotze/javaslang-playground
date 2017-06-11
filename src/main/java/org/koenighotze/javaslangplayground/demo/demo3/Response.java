@@ -1,6 +1,6 @@
 package org.koenighotze.javaslangplayground.demo.demo3;
 
-import javaslang.collection.List;
+import io.vavr.collection.List;
 
 /**
  * @author David Schmitz

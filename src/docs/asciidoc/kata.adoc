@@ -1,0 +1,68 @@
+= Javaslang Kata
+:sourcedir: ../../main/java/
+:testdir: ../../main/test/
+:rootdir: ../
+
+David Schmitz <https://github.com/koenighotze[@koenighotze]>
+
+This documents is a series of Katas for learning Javaslang and its core
+features.
+
+Obviously, this is not complete and will most likely never be complete.
+
+== Setup and dependencies
+
+[source,groovy]
+----
+include::{rootdir}/build.gradle[]
+----
+
+
+
+== Basic collections
+
+include::basic_collections_array.adoc[]
+
+include::basic_collections_list.adoc[]
+
+include::basic_collections_stream.adoc[]
+
+include::basic_collections_treeset.adoc[]
+
+include::basic_collections_hashmap.adoc[]
+
+include::basic_collections_tree.adoc[]
+
+
+=== Render your datastructures
+
+
+
+
+== Option
+
+== Try
+
+== Adding Javaslang to REST
+
+=== Create a basic Spring Boot MVC application
+
+=== Add Javaslang serialization
+
+=== Try it out
+
+== Spring Data and Javaslang
+
+== Lift
+
+== Curry
+
+== Memoize
+
+== Pattern matching
+
+
+== Property based testing
+
+
+== Resilience4J

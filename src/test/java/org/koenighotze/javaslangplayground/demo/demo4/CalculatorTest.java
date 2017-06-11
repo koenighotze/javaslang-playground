@@ -2,8 +2,8 @@ package org.koenighotze.javaslangplayground.demo.demo4;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-import javaslang.test.Arbitrary;
-import javaslang.test.Property;
+import io.vavr.test.Arbitrary;
+import io.vavr.test.Property;
 import org.junit.Test;
 
 /**

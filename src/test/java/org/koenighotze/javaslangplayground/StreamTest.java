@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Set;
 
-import javaslang.collection.*;
+import io.vavr.collection.*;
 import org.junit.*;
 
 

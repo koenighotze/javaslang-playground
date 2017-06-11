@@ -7,8 +7,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javaslang.collection.List;
-import javaslang.control.Try;
+import io.vavr.collection.List;
+import io.vavr.control.Try;
 
 public class FeedFetcher {
 

@@ -1,24 +1,22 @@
 package org.koenighotze.javaslangplayground;
 
+import static io.vavr.API.$;
+import static io.vavr.API.Case;
+import static io.vavr.API.Match;
+import static io.vavr.Patterns.$None;
+import static io.vavr.Patterns.$Some;
+import static io.vavr.collection.List.empty;
+import static io.vavr.collection.List.of;
 import static java.util.Collections.emptyList;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toSet;
-import static javaslang.API.$;
-import static javaslang.API.Case;
-import static javaslang.API.Match;
-import static javaslang.Patterns.None;
-import static javaslang.Patterns.Some;
-import static javaslang.collection.List.empty;
-import static javaslang.collection.List.of;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.Optional;
+import java.util.*;
 
-import javaslang.Patterns;
-import javaslang.collection.List;
-import javaslang.control.Option;
-import org.junit.Test;
+import io.vavr.collection.List;
+import io.vavr.control.*;
+import org.junit.*;
 
 /**
  * @author David Schmitz
@@ -36,8 +34,8 @@ public class OptionTest {
         Option<String> option = Option.none();
         // @formatter:off
         String result = Match(option).of(
-            Case(Some($()), identity()),
-            Case(None(), "nix")
+            Case($Some($()), identity()),
+            Case($None(), "nix")
         );
         // @formatter:on
         assertThat(result).isEqualTo("nix");
@@ -48,9 +46,9 @@ public class OptionTest {
         Option<String> option = Option.of("bla");
         // @formatter:off
         String result = Match(option).of(
-            Case(Patterns.<String, String>Some($(v -> v.length() > 4)), identity()),
-            Case(Patterns.<String, String>Some($()), "other"),
-            Case(Patterns.<String>None(), "nix")
+            Case($Some($(v -> v.length() > 4)), identity()),
+            Case($Some($()), "other"),
+            Case($None(), "nix")
         );
         // @formatter:on
         assertThat(result).isEqualTo("other");

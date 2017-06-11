@@ -1,6 +1,6 @@
 package org.koenighotze.txprototype.user;
 
-import javaslang.jackson.datatype.JavaslangModule;
+import io.vavr.jackson.datatype.JavaslangModule;
 import org.koenighotze.txprototype.user.model.User;
 import org.koenighotze.txprototype.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

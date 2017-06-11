@@ -1,11 +1,11 @@
 package org.koenighotze.javaslangplayground;
 
-import static javaslang.Function1.lift;
+import static io.vavr.Function1.lift;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import javaslang.control.Try;
+import io.vavr.control.Try;
 
 /**
  * @author David Schmitz

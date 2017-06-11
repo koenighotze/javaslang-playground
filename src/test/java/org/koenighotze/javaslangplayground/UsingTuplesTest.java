@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import javaslang.Tuple;
-import javaslang.Tuple2;
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
 
 /**
  * @author dschmitz

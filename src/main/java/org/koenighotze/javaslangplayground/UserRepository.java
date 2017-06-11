@@ -1,6 +1,6 @@
 package org.koenighotze.javaslangplayground;
 
-import javaslang.control.Option;
+import io.vavr.control.Option;
 
 /**
  * @author David Schmitz

@@ -4,8 +4,8 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 import org.junit.Test;
 
-import javaslang.collection.List;
-import javaslang.control.Option;
+import io.vavr.collection.List;
+import io.vavr.control.Option;
 
 /**
  * @author David Schmitz

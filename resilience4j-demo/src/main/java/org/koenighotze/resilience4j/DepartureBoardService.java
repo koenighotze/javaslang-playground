@@ -1,14 +1,14 @@
 package org.koenighotze.resilience4j;
 
-import static javaslang.collection.List.empty;
+import static io.vavr.collection.List.empty;
 import static org.springframework.http.HttpStatus.OK;
 
 import io.github.robwin.circuitbreaker.*;
 import io.github.robwin.decorators.*;
 import io.github.robwin.retry.internal.*;
-import javaslang.collection.*;
-import javaslang.control.*;
-import javaslang.control.Try.*;
+import io.vavr.collection.*;
+import io.vavr.control.*;
+import io.vavr.control.Try.*;
 import org.koenighotze.resilience4j.model.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;

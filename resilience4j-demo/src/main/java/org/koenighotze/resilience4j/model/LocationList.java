@@ -1,7 +1,7 @@
 package org.koenighotze.resilience4j.model;
 
 import com.fasterxml.jackson.annotation.*;
-import javaslang.collection.*;
+import io.vavr.collection.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationList {

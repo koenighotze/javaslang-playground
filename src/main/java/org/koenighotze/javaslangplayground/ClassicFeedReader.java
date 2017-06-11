@@ -2,7 +2,7 @@ package org.koenighotze.javaslangplayground;
 
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
-import static javaslang.control.Try.of;
+import static io.vavr.control.Try.of;
 
 import java.io.BufferedReader;
 import java.io.IOException;

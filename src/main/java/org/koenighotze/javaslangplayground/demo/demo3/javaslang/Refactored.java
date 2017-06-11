@@ -2,7 +2,7 @@ package org.koenighotze.javaslangplayground.demo.demo3.javaslang;
 
 import static org.koenighotze.javaslangplayground.demo.demo3.Response.OK;
 
-import javaslang.collection.*;
+import io.vavr.collection.*;
 import org.koenighotze.javaslangplayground.demo.demo3.*;
 
 public class Refactored {

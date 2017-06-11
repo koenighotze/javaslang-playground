@@ -1,11 +1,11 @@
 package org.koenighotze.txprototype.user.controller;
 
-import static javaslang.test.Arbitrary.string;
-import static javaslang.test.Gen.choose;
+import static io.vavr.test.Arbitrary.string;
+import static io.vavr.test.Gen.choose;
 
-import javaslang.*;
-import javaslang.collection.*;
-import javaslang.test.*;
+import io.vavr.*;
+import io.vavr.collection.*;
+import io.vavr.test.*;
 
 /**
  * @author David Schmitz
