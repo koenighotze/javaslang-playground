@@ -4,12 +4,11 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
-import io.github.robwin.circuitbreaker.*;
-import io.github.robwin.decorators.*;
-import io.github.robwin.retry.internal.*;
+import io.github.resilience4j.circuitbreaker.*;
+import io.github.resilience4j.retry.*;
+import io.vavr.*;
 import io.vavr.collection.*;
 import io.vavr.control.*;
-import io.vavr.control.Try.*;
 import org.koenighotze.resilience4j.model.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -21,10 +20,10 @@ public class StationService {
 
     private final DbConsumer dbConsumer;
     private final CircuitBreaker circuitBreaker;
-    private final RetryContext retryContext;
+    private final Retry.Context retryContext;
 
     @Autowired
-    public StationService(DbConsumer dbConsumer, CircuitBreaker circuitBreaker, RetryContext retryContext) {
+    public StationService(DbConsumer dbConsumer, CircuitBreaker circuitBreaker, Retry.Context retryContext) {
         this.dbConsumer = dbConsumer;
         this.circuitBreaker = circuitBreaker;
         this.retryContext = retryContext;
@@ -33,11 +32,10 @@ public class StationService {
     @GetMapping(path = "/{city}")
     public HttpEntity<Option<List<StationInfo>>> getStations(@PathVariable("city") String city) {
         // @formatter:off
-        CheckedFunction<String, Option<List<StationInfo>>> decorated =
-                Decorators.ofCheckedFunction(dbConsumer::fetchStations)
-                          .withCircuitBreaker(circuitBreaker)
-                          .withRetry(retryContext)
-                          .decorate();
+
+        CheckedFunction1<String, Option<List<StationInfo>>> decorated = CircuitBreaker.decorateCheckedFunction(circuitBreaker, dbConsumer::fetchStations);
+//                          .withRetry(retryContext)
+//                          .decorate();
 
         Option<List<StationInfo>> result = Try.of(() -> decorated.apply(city))
                                                .getOrElse(Option.none());
@@ -45,7 +43,5 @@ public class StationService {
         return new ResponseEntity<>(result, result.map(r -> OK)
                                                   .getOrElse(NOT_FOUND));
     }
-
-
 
 }

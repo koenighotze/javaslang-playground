@@ -3,9 +3,8 @@ package org.koenighotze.resilience4j;
 import java.time.*;
 
 import com.fasterxml.jackson.databind.*;
-import io.github.robwin.circuitbreaker.*;
-import io.github.robwin.retry.*;
-import io.github.robwin.retry.internal.*;
+import io.github.resilience4j.circuitbreaker.*;
+import io.github.resilience4j.retry.*;
 import io.vavr.jackson.datatype.*;
 import org.slf4j.*;
 import org.springframework.boot.*;
@@ -20,8 +19,8 @@ public class DemoApplication {
     private static final Logger logger = LoggerFactory.getLogger(StationService.class);
 
     @Bean
-    public static Module javaslangModule() {
-        return new JavaslangModule();
+    public static Module vavrModule() {
+        return new VavrModule();
     }
 
     @Bean
@@ -41,17 +40,17 @@ public class DemoApplication {
     }
 
     @Bean
-    public static RetryContext dbRetryContext() {
+    public static Retry.Context dbRetryContext() {
         RetryConfig retryConfig = RetryConfig.custom()
                                              .maxAttempts(2)
                                              .waitDuration(Duration.ofMillis(1000))
                                              .build();
 
-        RetryContext retryContext = Retry.of("db", retryConfig);
-        retryContext.getEventStream()
-                    .map(Object::toString)
-                    .forEach(logger::info);
-        return retryContext;
+        Retry retry = Retry.of("db", retryConfig);
+        //        retry.getEventPublisher().
+        //                    .map(Object::toString)
+        //                    .forEach(logger::info);
+        return retry.context();
     }
 
     @Bean
@@ -66,9 +65,9 @@ public class DemoApplication {
                                                           })
                                                           .build();
         CircuitBreaker circuitBreaker = CircuitBreaker.of("db", config);
-        circuitBreaker.getEventStream()
-                      .map(Object::toString)
-                      .forEach(logger::info);
+//        circuitBreaker.getEventStream()
+//                      .map(Object::toString)
+//                      .forEach(logger::info);
         return circuitBreaker;
     }
 

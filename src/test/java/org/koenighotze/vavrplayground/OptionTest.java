@@ -13,6 +13,7 @@ import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.*;
+import java.util.function.*;
 
 import io.vavr.collection.List;
 import io.vavr.control.*;
@@ -69,6 +70,18 @@ public class OptionTest {
             }
         }
         assertThat(street).as("Street should have been initialized").isNotNull();
+    }
+
+    @Test
+    public void map_vs_flatmap() {
+        User p = new User();
+        Address address = new Address();
+        address.setStreet("Foo");
+        p.setAddress(address);
+
+        Option<User> option = Option.of(p);
+        option.map(User::getAddress).flatMap();
+
     }
 
     @Test

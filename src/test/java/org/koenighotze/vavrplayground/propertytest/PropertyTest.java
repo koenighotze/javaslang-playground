@@ -1,22 +1,20 @@
-package org.koenighotze.txprototype.user.controller;
+package org.koenighotze.javaslangplayground.propertytest;
 
+import static io.vavr.test.Gen.choose;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import static java.util.regex.Pattern.compile;
-import static io.vavr.test.Gen.choose;
-import static org.koenighotze.txprototype.user.controller.ArbitraryData.rfcEmail;
+import static org.koenighotze.javaslangplayground.propertytest.ArbitraryData.rfcEmail;
 
-import java.util.Random;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.regex.*;
 
-import io.vavr.test.Arbitrary;
-import io.vavr.test.Gen;
-import io.vavr.test.Property;
-import org.junit.Test;
+import io.vavr.test.*;
+import org.junit.*;
 
 /**
  * @author David Schmitz
  */
-public class FooTest {
+public class PropertyTest {
     @Test
     public void gen() {
         for (int k = 0; k < 1000; k++) {

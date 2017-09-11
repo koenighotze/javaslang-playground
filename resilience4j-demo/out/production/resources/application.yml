@@ -1,0 +1,17 @@
+spring:
+  jackson:
+    serialization:
+      indent_output: true
+  main:
+    banner-mode: "off"
+
+#db.api.auth.key=<YOUR API KEY or on Commandline, etc.>
+db:
+  api:
+    station:
+      url:
+        template: "https://open-api.bahn.de/bin/rest.exe/location.name?format=json&lang=en&input={city}&authKey={authKey}"
+    departureboard:
+          url:
+            template: "https://open-api.bahn.de/bin/rest.exe/departureBoard?format=json&lang=en&id={stationId}&authKey={authKey}"
+
