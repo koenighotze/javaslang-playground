@@ -1,6 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.demo1.javaslang;
-
-import io.vavr.*;
+package org.koenighotze.vavrplayground.demo.demo1.vavr;
 
 /**
  * @author David Schmitz

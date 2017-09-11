@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import java.io.*;
 import java.nio.file.*;

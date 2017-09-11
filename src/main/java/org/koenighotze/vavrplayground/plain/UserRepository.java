@@ -1,6 +1,6 @@
-package org.koenighotze.javaslangplayground.plain;
+package org.koenighotze.vavrplayground.plain;
 
-import org.koenighotze.javaslangplayground.InvalidUserException;
+import org.koenighotze.vavrplayground.InvalidUserException;
 
 /**
  * @author David Schmitz

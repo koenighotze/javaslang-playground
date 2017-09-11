@@ -1,8 +1,8 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.Assert.assertNotSame;
-import static org.koenighotze.javaslangplayground.Team.withName;
+import static org.koenighotze.vavrplayground.Team.withName;
 
 import io.vavr.collection.*;
 import org.junit.*;

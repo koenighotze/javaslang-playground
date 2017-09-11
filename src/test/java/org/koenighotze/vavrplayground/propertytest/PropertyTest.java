@@ -1,9 +1,9 @@
-package org.koenighotze.javaslangplayground.propertytest;
+package org.koenighotze.vavrplayground.propertytest;
 
 import static io.vavr.test.Gen.choose;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 import static java.util.regex.Pattern.compile;
-import static org.koenighotze.javaslangplayground.propertytest.ArbitraryData.rfcEmail;
+import static org.koenighotze.vavrplayground.propertytest.ArbitraryData.rfcEmail;
 
 import java.util.*;
 import java.util.regex.*;

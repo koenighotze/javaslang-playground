@@ -1,11 +1,11 @@
-= Javaslang Kata
+= Vavr Kata
 :sourcedir: ../../main/java/
 :testdir: ../../main/test/
 :rootdir: ../
 
 David Schmitz <https://github.com/koenighotze[@koenighotze]>
 
-This documents is a series of Katas for learning Javaslang and its core
+This documents is a series of Katas for learning Vavr and its core
 features.
 
 Obviously, this is not complete and will most likely never be complete.
@@ -43,15 +43,15 @@ include::basic_collections_tree.adoc[]
 
 == Try
 
-== Adding Javaslang to REST
+== Adding Vavr to REST
 
 === Create a basic Spring Boot MVC application
 
-=== Add Javaslang serialization
+=== Add Vavr serialization
 
 === Try it out
 
-== Spring Data and Javaslang
+== Spring Data and Vavr
 
 == Lift
 

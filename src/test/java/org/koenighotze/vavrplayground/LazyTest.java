@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import io.vavr.Lazy;
 import org.junit.Test;

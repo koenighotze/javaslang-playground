@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

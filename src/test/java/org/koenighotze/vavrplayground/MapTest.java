@@ -1,12 +1,9 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import io.vavr.API;
-import io.vavr.API.Match;
-import io.vavr.API.Match.Case;
 import io.vavr.collection.HashMap;
 import io.vavr.control.Option;
 

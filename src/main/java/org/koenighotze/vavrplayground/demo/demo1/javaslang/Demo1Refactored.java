@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.demo1.javaslang;
+package org.koenighotze.vavrplayground.demo.demo1.vavr;
 
 public class Demo1Refactored {
 }

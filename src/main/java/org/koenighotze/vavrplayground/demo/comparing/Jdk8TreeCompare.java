@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.comparing;
+package org.koenighotze.vavrplayground.demo.comparing;
 
 import static java.util.Arrays.asList;
 

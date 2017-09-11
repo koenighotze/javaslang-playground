@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static io.github.resilience4j.circuitbreaker.CircuitBreaker.State.CLOSED;
 import static io.github.resilience4j.circuitbreaker.CircuitBreaker.State.HALF_OPEN;
@@ -8,7 +8,7 @@ import static io.vavr.collection.List.empty;
 import static java.time.temporal.ChronoUnit.SECONDS;
 import static java.util.function.Function.identity;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.koenighotze.javaslangplayground.FeedFetcher.titanicFeed;
+import static org.koenighotze.vavrplayground.FeedFetcher.titanicFeed;
 
 import java.time.*;
 import java.util.stream.*;

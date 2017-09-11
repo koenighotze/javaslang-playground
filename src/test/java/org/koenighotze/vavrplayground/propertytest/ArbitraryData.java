@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.propertytest;
+package org.koenighotze.vavrplayground.propertytest;
 
 import static io.vavr.test.Arbitrary.string;
 

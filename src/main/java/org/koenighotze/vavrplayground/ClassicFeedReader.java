@@ -1,18 +1,13 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
+import static io.vavr.control.Try.of;
+import static java.lang.String.format;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
-import static io.vavr.control.Try.of;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
 /**
  * @author David Schmitz
@@ -22,9 +17,9 @@ public class ClassicFeedReader {
 
     public static List<String> getFeed(String user) {
         BufferedReader reader = null;
-        List<String> result = new ArrayList<>();
+        List<String> result;
         try {
-            URL url = new URL(String.format(TWITTER, user));
+            URL url = new URL(format(TWITTER, user));
             URLConnection connection = url.openConnection();
             InputStream is = connection.getInputStream();
 
@@ -57,7 +52,7 @@ public class ClassicFeedReader {
 
     public static List<String> improved(String user) {
         try {
-            URL url = new URL(String.format(TWITTER, user));
+            URL url = new URL(format(TWITTER, user));
             URLConnection connection = url.openConnection();
 
             try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
@@ -69,7 +64,7 @@ public class ClassicFeedReader {
     }
 
 
-    public static List<String> withJavaslang(String urlPath) {
+    public static List<String> withVavr(String urlPath) {
         //@formatter:off
         return of(() -> new URL(urlPath))
            .flatMap(url -> of(url::openConnection))
@@ -83,9 +78,9 @@ public class ClassicFeedReader {
 //        System.out.println(getFeed("koenighotze"));
 //        System.out.println(improved("koenighotze"));
 
-//        List<String> result = withJavaslang("notaurl");
-        List<String> result = withJavaslang("http://notthere");
-//        List<String> result = withJavaslang(String.format(TWITTER, "koenighotze"));
+//        List<String> result = withVavr("notaurl");
+        List<String> result = withVavr("http://notthere");
+//        List<String> result = withVavr(String.format(TWITTER, "koenighotze"));
         System.out.println(result);
     }
 }

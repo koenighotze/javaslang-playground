@@ -1,11 +1,11 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static java.lang.String.join;
 import static java.nio.file.Paths.get;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.joining;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.koenighotze.javaslangplayground.LiftTest.parseIban;
+import static org.koenighotze.vavrplayground.LiftTest.parseIban;
 
 import java.io.*;
 import java.util.stream.*;
@@ -13,8 +13,8 @@ import java.util.stream.*;
 import io.vavr.collection.*;
 import io.vavr.control.*;
 import org.junit.*;
-import org.koenighotze.javaslangplayground.plain.User;
-import org.koenighotze.javaslangplayground.plain.UserRepository;
+import org.koenighotze.vavrplayground.plain.User;
+import org.koenighotze.vavrplayground.plain.UserRepository;
 
 /**
  * @author dschmitz
@@ -72,7 +72,7 @@ public class ExceptionHandlingTest {
     }
 
     @Test
-    public void handle_exceptions_using_javaslang() {
+    public void handle_exceptions_using_vavr() {
         List<User> validUsers = List.ofAll(users)
                                     .filter(user -> Try.of(user::validateAddress)
                                                        .getOrElse(false));

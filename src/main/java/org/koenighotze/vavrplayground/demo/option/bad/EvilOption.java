@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.option.bad;
+package org.koenighotze.vavrplayground.demo.option.bad;
 
 import java.math.BigDecimal;
 import java.util.Optional;

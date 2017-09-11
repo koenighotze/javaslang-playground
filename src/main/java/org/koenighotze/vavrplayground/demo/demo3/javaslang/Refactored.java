@@ -1,9 +1,9 @@
-package org.koenighotze.javaslangplayground.demo.demo3.javaslang;
+package org.koenighotze.vavrplayground.demo.demo3.vavr;
 
-import static org.koenighotze.javaslangplayground.demo.demo3.Response.OK;
+import static org.koenighotze.vavrplayground.demo.demo3.Response.OK;
 
 import io.vavr.collection.*;
-import org.koenighotze.javaslangplayground.demo.demo3.*;
+import org.koenighotze.vavrplayground.demo.demo3.*;
 
 public class Refactored {
 

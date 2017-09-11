@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static java.lang.Thread.sleep;
 import static java.util.concurrent.TimeUnit.SECONDS;

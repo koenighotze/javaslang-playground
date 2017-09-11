@@ -1,9 +1,9 @@
-package org.koenighotze.javaslangplayground.demo.demo1.java8;
+package org.koenighotze.vavrplayground.demo.demo1.java8;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.koenighotze.javaslangplayground.User;
+import org.koenighotze.vavrplayground.User;
 
 public class Demo1 {
 

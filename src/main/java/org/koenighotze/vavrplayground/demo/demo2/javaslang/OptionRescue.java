@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.demo2.javaslang;
+package org.koenighotze.vavrplayground.demo.demo2.vavr;
 
 public class OptionRescue {
 

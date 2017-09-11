@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import io.vavr.*;
 import io.vavr.control.*;
@@ -84,7 +84,7 @@ public class FunctionTest {
 
         // memoization is just too much work
 
-        // javaslang
+        // vavr
         Function1<Subject, Option<Integer>> memoized = lift(Subject::callMeTwiceAndIfWillFail).memoized();
 
         assertThat(memoized.apply(subject).get()).isEqualTo(MAX_VALUE);

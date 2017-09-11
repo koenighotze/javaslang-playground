@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import io.vavr.control.Option;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class JdkOptionalTest {
     }
 
     @Test
-    public void optional_of_nullable_and_empty_with_javaslang() {
+    public void optional_of_nullable_and_empty_with_vavr() {
         Map<String, String> map = new HashMap<>();
         map.put("A Null", null);
         map.put("A Non Null", "Foo");

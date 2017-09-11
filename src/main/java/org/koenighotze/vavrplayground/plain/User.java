@@ -1,6 +1,6 @@
-package org.koenighotze.javaslangplayground.plain;
+package org.koenighotze.vavrplayground.plain;
 
-import org.koenighotze.javaslangplayground.Address;
+import org.koenighotze.vavrplayground.Address;
 
 /**
  * @author David Schmitz

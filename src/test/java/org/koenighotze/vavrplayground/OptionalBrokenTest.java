@@ -1,7 +1,7 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.koenighotze.javaslangplayground.Lists.map;
+import static org.koenighotze.vavrplayground.Lists.map;
 
 import java.util.Arrays;
 import java.util.List;

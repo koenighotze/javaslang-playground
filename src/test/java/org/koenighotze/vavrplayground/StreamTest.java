@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import static java.util.stream.Collectors.toSet;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +26,7 @@ public class StreamTest {
     }
 
     @Test
-    public void javaslang_stream() {
+    public void vavr_stream() {
         //@formatter:off
         Set<String> teams =
             Stream.of("F95", "FCK", "FCN")

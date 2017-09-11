@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground;
+package org.koenighotze.vavrplayground;
 
 import io.vavr.Tuple;
 import io.vavr.Tuple2;
@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.NoSuchElementException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.koenighotze.javaslangplayground.Team.withName;
+import static org.koenighotze.vavrplayground.Team.withName;
 
 /**
  * @author David Schmitz

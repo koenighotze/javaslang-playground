@@ -1,9 +1,9 @@
-package org.koenighotze.javaslangplayground.demo.collection.jdk8;
+package org.koenighotze.vavrplayground.demo.collection.jdk8;
 
 import java.util.Collections;
 import java.util.List;
 
-import org.koenighotze.javaslangplayground.User;
+import org.koenighotze.vavrplayground.User;
 
 /**
  * @author David Schmitz

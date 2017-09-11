@@ -1,4 +1,4 @@
-package org.koenighotze.javaslangplayground.demo.demo3;
+package org.koenighotze.vavrplayground.demo.demo3;
 
 import io.vavr.collection.List;
 

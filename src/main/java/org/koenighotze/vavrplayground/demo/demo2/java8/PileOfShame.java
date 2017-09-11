@@ -1,8 +1,8 @@
-package org.koenighotze.javaslangplayground.demo.demo2.java8;
+package org.koenighotze.vavrplayground.demo.demo2.java8;
 
-import org.koenighotze.javaslangplayground.Address;
-import org.koenighotze.javaslangplayground.plain.User;
-import org.koenighotze.javaslangplayground.plain.UserRepository;
+import org.koenighotze.vavrplayground.Address;
+import org.koenighotze.vavrplayground.plain.User;
+import org.koenighotze.vavrplayground.plain.UserRepository;
 
 /**
  * @author David Schmitz
