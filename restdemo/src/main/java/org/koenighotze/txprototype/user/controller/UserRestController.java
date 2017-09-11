@@ -3,7 +3,7 @@ package org.koenighotze.txprototype.user.controller;
 import static io.vavr.API.$;
 import static io.vavr.API.Case;
 import static io.vavr.API.Match;
-import static io.vavr.Patterns.Some;
+import static io.vavr.Patterns.$Some;
 import static io.vavr.Predicates.instanceOf;
 import static org.koenighotze.txprototype.user.controller.IanaRel.COLLECTION;
 import static org.springframework.hateoas.Link.REL_SELF;
@@ -53,36 +53,34 @@ public class UserRestController {
 
     // example PUT for creating resource
     @RequestMapping(value = "/{publicId}", method = PUT, consumes = APPLICATION_JSON_UTF8_VALUE)
-    public HttpEntity<UserResource> newUser(@PathVariable String publicId, @RequestBody User user) {
+    public HttpEntity<UserResource> newUser(@PathVariable("publicId") String publicId, @RequestBody User user) {
+        Option<User> storedUser = userRepository.findByPublicId(publicId);
+        HttpStatus httpStatus = storedUser.map(u -> OK)
+                                          .getOrElse(CREATED);
 
-        //@formatter:off
-        User userToStore = Option.of(userRepository.findByPublicId(publicId))
-                .map(foundUser -> {
-                    foundUser.setEmail(user.getEmail());
-                    foundUser.setLastname(user.getLastname());
-                    foundUser.setFirstname(user.getFirstname());
-                    return foundUser;
-                })
-                .getOrElse(user);
-        //@formatter:on
+        User userToStore = storedUser.map(foundUser -> updateUserFields(user, foundUser))
+                                     .getOrElse(user);
 
         UserResource userResource = new UserResource(userToStore);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(URI.create(userResource.getLink(REL_SELF)
                                                        .getHref()));
-
-        HttpStatus status = Option.of(userToStore.getUserId())
-                                  .map(id -> OK)
-                                  .getOrElse(CREATED);
         userRepository.save(userToStore);
 
-        return new ResponseEntity<>(userResource, httpHeaders, status);
+        return new ResponseEntity<>(userResource, httpHeaders, httpStatus);
+    }
+
+    private User updateUserFields(User user, User foundUser) {
+        foundUser.setEmail(user.getEmail());
+        foundUser.setLastname(user.getLastname());
+        foundUser.setFirstname(user.getFirstname());
+        return foundUser;
     }
 
     @RequestMapping(value = "/{publicId}", method = DELETE)
     public ResponseEntity<?> deleteUserByPublicId(@PathVariable String publicId) {
         //@formatter:off
-        Option<User> userOption = Option.of(userRepository.findByPublicId(publicId));
+        Option<User> userOption = userRepository.findByPublicId(publicId);
 
         Option<HttpHeaders> result =
                 userOption
@@ -99,7 +97,7 @@ public class UserRestController {
                         });
 
         return Match(result).of(
-                Case(Some($(instanceOf(HttpHeaders.class))), h -> new ResponseEntity<>(null, h, PERMANENT_REDIRECT)),
+                Case($Some($(instanceOf(HttpHeaders.class))), h -> new ResponseEntity<>(null, h, PERMANENT_REDIRECT)),
                 Case($(), new ResponseEntity<>(null, NOT_FOUND))
         );
         //@formatter:on
@@ -109,7 +107,7 @@ public class UserRestController {
     public ResponseEntity<UserResource> userByPublicId(@PathVariable String publicId) {
         //@formatter:off
         return Match(Option.of(userRepository.findByPublicId(publicId))).of(
-                Case(Some($(instanceOf(User.class))), user -> new ResponseEntity<>(new UserResource(user), OK)),
+                Case($Some($(instanceOf(User.class))), user -> new ResponseEntity<>(new UserResource(user), OK)),
                 Case($(), new ResponseEntity<>(NOT_FOUND))
         );
         //@formatter:on

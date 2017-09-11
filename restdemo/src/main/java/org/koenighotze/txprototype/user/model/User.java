@@ -1,11 +1,11 @@
 package org.koenighotze.txprototype.user.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.springframework.data.annotation.Id;
+import javax.validation.constraints.*;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import com.fasterxml.jackson.annotation.*;
+import org.apache.commons.lang3.builder.*;
+import org.springframework.data.annotation.*;
+import org.springframework.data.mongodb.core.index.*;
 
 /**
  * Represents a user.
@@ -15,10 +15,12 @@ import javax.validation.constraints.Size;
 public class User {
     @Id
     @JsonIgnore
+    @Indexed(unique = true)
     private String userId;
 
     @Size(min = 1, max = 40)
     @NotNull
+    @Indexed(unique = true)
     private String publicId;
 
     @Size(min = 1, max = 20)
@@ -98,13 +100,12 @@ public class User {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .append("id", userId)
-                .append("publicId", publicId)
-                .append("username", username)
-                .append("email", email)
-                .append("firstname", firstname)
-                .append("lastname", lastname)
-                .toString();
+        return new ToStringBuilder(this).append("id", userId)
+                                        .append("publicId", publicId)
+                                        .append("username", username)
+                                        .append("email", email)
+                                        .append("firstname", firstname)
+                                        .append("lastname", lastname)
+                                        .toString();
     }
 }
