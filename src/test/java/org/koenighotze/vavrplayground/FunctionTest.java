@@ -1,17 +1,17 @@
 package org.koenighotze.vavrplayground;
 
-import io.vavr.*;
-import io.vavr.control.*;
-import org.junit.*;
+import static io.vavr.Function1.lift;
+import static java.lang.Integer.MAX_VALUE;
+import static java.time.LocalDate.now;
+import static java.util.Optional.ofNullable;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.*;
 import java.util.function.*;
 
-import static java.lang.Integer.*;
-import static java.time.LocalDate.*;
-import static java.util.Optional.*;
-import static io.vavr.Function1.*;
-import static org.assertj.core.api.Assertions.*;
+import io.vavr.*;
+import io.vavr.control.*;
+import org.junit.*;
 
 /**
  * @author dschmitz
@@ -21,9 +21,7 @@ public class FunctionTest {
     public void old_way_currying() {
         BiFunction<Integer, Integer, Integer> f = (i, j) -> i * j;
 
-        Function<Integer, Integer> curried = (i) -> {
-            return f.apply(2, i);
-        };
+        Function<Integer, Integer> curried = (i) -> f.apply(2, i);
 
         assertThat(curried.apply(5)).isEqualTo(10);
     }
@@ -95,5 +93,6 @@ public class FunctionTest {
 
     @Test
     public void return_function_with_checked_exception() {
+        // TODO: implement me
     }
 }

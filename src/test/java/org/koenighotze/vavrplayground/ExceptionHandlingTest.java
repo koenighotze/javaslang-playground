@@ -14,7 +14,6 @@ import io.vavr.collection.*;
 import io.vavr.control.*;
 import org.junit.*;
 import org.koenighotze.vavrplayground.plain.User;
-import org.koenighotze.vavrplayground.plain.UserRepository;
 
 /**
  * @author dschmitz
@@ -22,7 +21,6 @@ import org.koenighotze.vavrplayground.plain.UserRepository;
 public class ExceptionHandlingTest {
 
     private java.util.List<User> users;
-    private UserRepository repo;
 
     @Before
     public void setupUsers() {
@@ -32,7 +30,6 @@ public class ExceptionHandlingTest {
         validUser.setAddress(address);
 
         users = asList(validUser, new User());
-        repo = new UserRepository();
     }
 
     @Test
@@ -51,10 +48,6 @@ public class ExceptionHandlingTest {
                            .map(liste -> join(", ", liste))
                            .getOrElse("Default");
         assertThat(result).isNotEmpty();
-    }
-
-    public static class MyBusinessException extends Exception {
-
     }
 
     @Test
@@ -118,10 +111,10 @@ public class ExceptionHandlingTest {
         assertThat(result).isEqualTo("");
 
         // TODO: fix me
-//        result = Try.of(() -> parseIban("AL.."))
-//                    .recover(t -> Match(t).of(Case(instanceOf(IllegalArgumentException.class), "not an valid iban")))
-//                    .get();
-//
-//        assertThat(result).isEqualTo("not an valid iban");
+        //        result = Try.of(() -> parseIban("AL.."))
+        //                    .recover(t -> Match(t).of(Case(instanceOf(IllegalArgumentException.class), "not an valid iban")))
+        //                    .get();
+        //
+        //        assertThat(result).isEqualTo("not an valid iban");
     }
 }

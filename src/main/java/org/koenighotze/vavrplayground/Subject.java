@@ -68,11 +68,7 @@ final class Subject {
             throw new IllegalStateException("Birthday must not be null and I don't know about preconditions :(");
         }
 
-        if (name.length() > 10) {
-            return false;
-        }
-
-        return true;
+        return name.length() <= 10;
     }
 
     public Integer callMeTwiceAndIfWillFail() {

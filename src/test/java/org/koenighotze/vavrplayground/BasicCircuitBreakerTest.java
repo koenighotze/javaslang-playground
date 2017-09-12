@@ -126,6 +126,7 @@ public class BasicCircuitBreakerTest {
     @Test
     @Ignore("Check how to protect against timeouts")
     public void circuit_opens_on_timeout() {
+        // TODO: implement me
     }
 
     private static class Counter {
